@@ -1,0 +1,277 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+  <meta name="description">
+  <meta name="author" content="SitePoint">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--Import materialize.css-->
+  <link rel= "stylesheet" type= "text/css" href= "css/materialize.css">
+  <!-- import main.css--> 
+  <link rel= "stylesheet" type= "text/css" href= "css/main.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Import font families --> 
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- import jquery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <!-- import ckeditor --> 
+  <!-- <script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/inline/ckeditor.js"></script> -->
+  <script src="./ckeditor5-build-inline/build/ckeditor.js"></script>
+
+  <!-- import moment.js --> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+  <style>
+
+  </style>
+
+</head>
+
+<body>
+
+<!-- LOGIN MODAL -->
+<div id="modal-login" class="modal">
+  <div class="modal-content">
+    <h4>Enter the Treasure Trove</h4><br />
+    <form id="login-form">
+      <div class="input-field">
+        <input class="validate" type="email" id="login-email" required />
+        <label for="login-email">Email address</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="login-password" required />
+        <label for="login-password">Your password</label>
+      </div>
+      <div id="modal-login-btn-wrapper">
+      	<button class="btn black z-depth-0">Login</button><p id="incorrect-dialog">Incorrect Email or Password. Try again.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- THOUGHT DELETE CONFIRMATION MODAL --> 
+<div id="modal-delete" class="modal">
+  <div class="modal-content">
+    <h4></h4><br />
+      <div id="modal-confirm-delete">
+      	<button class="btn black z-depth-0">Yes</button>
+      	<button class="btn black z-depth-0">Cancel Delete</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Top Banner + Nav Bar --> 
+<div class="main-nav">
+	<div class="main-nav-upper">
+		<div class="main-nav-inner">
+			<ul class="main-nav-login-links">
+				<li><a id="login-text" class="modal-trigger" href="#modal-login">Login</a></li>
+				<li id="logout-div"><a id="logout-btn">Log Out</a></li>
+			</ul>
+			<div class="main-nav-search">
+				<div id="searchSite">
+					<form action="#">
+						<input class="browser-default" type="text" id="search-bar" placeholder="Search for anything...">
+						<button class="search-submit-button browser-default"><i class="material-icons">search</i></a></button>
+					</form>
+				</div>
+			</div>
+			<a href="/" id="header-logo"></a>
+		</div>
+	</div>
+	<div class="main-nav-lower">
+		<div class="main-nav-lower-inner">
+			<ul class="navtabs">
+				<li class="navtab-item">
+					<a id="Home" class="navtab-heading">Home</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Investing" class="navtab-heading">Investing</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Life" class="navtab-heading">Life</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Skiing" class="navtab-heading">Skiing</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Art" class="navtab-heading">Art</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Food" class="navtab-heading">Food</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Writing" class="navtab-heading">Writing</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Tennis" class="navtab-heading">Tennis</a>
+				</li>
+				<li class="navtab-item">
+					<a id="Other" class="navtab-heading">Other</a>
+				</li>
+				<li class="navtab-item"  id="navtab-item-star">
+					<a id="Starred" class="navtab-heading"><i class="material-icons darker-color">star</i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<!-- Body of Page --> 
+
+<div class="container site-body">
+	<div class="row">
+		<div class ="col s12 m12">
+			<div class="body-content">
+				<div id="main-row" class="row">
+					<div id="thoughts-dom" class="col m8 l8">
+						<h2 style="display: none" id="main-title" class="section-title">Log in to view content</h2>
+							<div style="display: none" class="filters">
+								<div class="input-field">
+									<label for="date-filter">Date:</label>
+									<input type="text" maxlength="30" id="date-filter" size="20" value="2020-06-12" class="browser-default">
+									<script>
+										// Remove x from line 8812 of materialize.js to have materialize datepicker 
+										// all select stlying I disabled in materialize.css
+									    $(function () {
+									        $("#date-filter").datepicker({
+									            dateFormat: "yy-mm-dd",
+									            changeMonth: true,
+									            changeYear: true,
+									            closeText: 'X',
+									            showButtonPanel: true
+									        });
+									    });
+									</script>
+								</div>
+								<div class="filter-button-wrapper">
+									<input type="submit" id="submit-filter" value="Go" class="browser-default">
+								</div>
+								<div class="add-thought-container">
+								<a><i class="material-icons">add</i>
+								<span>Add Thought</span>
+								</a>
+		
+							</div>
+						</div>
+
+						<!-- thoughts container --> 
+						<div class ="thoughts-container">
+						</div>
+					</div>
+					<div style="display: none" id="stickies-dom"class="col m4 l4">
+						<div id="sticky-note-div" class="sticky-note-sidebar">
+							<div class="sticky-table">
+								<h2 class="sticky-headline"></h2>
+								<div class="sticky-table-list">
+									<table class="browser-default">
+										<thead>
+											<tr>
+												<td></td>
+												<td id="sticky-field-one"></td>
+												<td id="sticky-field-two"></td>
+												<td class="right" id="sticky-field-three"></td>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- sticky note content --> 
+										</tbody>
+									</table>
+								</div>
+								<ul class="add-to-note-container">
+									<li class="add-to-note">
+										<a id="add-stock-btn"><i class="material-icons">add</i>
+										<span></span></a>
+									</li>
+								</ul>
+							</div> 
+						</div>
+
+					</div>
+
+					<!-- HOME PAGE (start hidden) --> 
+					<div id="home-page-content" style="display: none" class="col s8 m12 s12">
+						<h2 class="section-title">HOME</h2>
+						<div class="home-top">
+							<div class="home-author-header">
+								<picture>
+									<img id="profile-image" src="">
+								</picture>
+								<span id="home-important-name"></span>
+							</div>
+						</div>
+						<!-- thoughts container --> 
+						<div class ="thoughts-container-home">
+							<div class="thought-item-home">
+								<div class="thought-byline-home">
+									<a href="#">
+										<time id="home-date" datetime="2020-24-20">
+										</time>
+										<span class="thought-author-home">
+										</span>
+									</a>
+								</div>
+								<h3 class="thought-headline-home"></h3>
+								<div class="thought-item-body-home">
+									<p></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+  
+  <!-- link js sheets -->
+  <script src="js/materialize.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+
+  <script> 
+	// config called from reserved url 
+
+    // firestore references 
+    firebase.analytics(); 
+	const auth = firebase.auth(); 
+	const db = firebase.firestore();
+	const storage = firebase.storage(); 
+	const storageRef = storage.ref(); 
+  
+  </script>
+
+</body>
+</html>
