@@ -2,6 +2,10 @@
 
 A note-taking webpage with user authentication and back-end data storage using Firebase.
 
+**Demonstration**
+
+https://github.com/Varun-Krishnan1/YourThoughts/assets/19865419/dc015930-bf6f-46a5-add3-5d487ad512df
+
 **Features**
 * User authentication
 * Create, edit, favorite, and delete notes
@@ -13,6 +17,7 @@ A note-taking webpage with user authentication and back-end data storage using F
 * Filter notes by date
 * Global search across all notes 
 * Full markdown capabilities while writing notes
+
 
 **User Authentication**
 Content only served when user authenticated. Using Firebase authentication as back-end:   
