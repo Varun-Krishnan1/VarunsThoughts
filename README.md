@@ -2,7 +2,7 @@
 
 A note-taking webpage with user authentication and back-end data storage using Firebase.
 
-**Demonstration**
+**Demo**
 
 https://github.com/Varun-Krishnan1/YourThoughts/assets/19865419/dc015930-bf6f-46a5-add3-5d487ad512df
 
