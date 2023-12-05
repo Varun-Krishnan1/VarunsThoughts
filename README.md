@@ -1,4 +1,4 @@
-# Jot It Down!
+# Your Thoughts
 
 A note-taking webpage with user authentication and back-end data storage using Firebase.
 
